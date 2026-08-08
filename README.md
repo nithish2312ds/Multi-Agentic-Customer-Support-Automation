@@ -1,8 +1,8 @@
-#Multi-Agent Customer Support Automation
+# Multi-Agent Customer Support Automation
 
-A production-inspired AI customer support system built with LangGraph, RAG, SQLite conversation memory, specialized agents, and human-in-the-loop approval workflows.
+A production-inspired AI customer support system built with [LangGraph](https://github.com/langchain-ai/langgraph), RAG, SQLite conversation memory, specialized agents, and human-in-the-loop approval workflows.
 
-##Overview
+## Overview
 
 This project implements a supervisor-based multi-agent architecture for automating customer support workflows.
 
@@ -14,34 +14,139 @@ Uses SQLite for persistent conversation memory.
 
 Includes human-in-the-loop approval gates for sensitive actions.
 
-##Tech Stack
+## Tech Stack
 
-Python · LangGraph · RAG · SQLite · LLM · Human-in-the-Loop
+* [Python](https://www.python.org/)
+* [LangGraph](https://github.com/langchain-ai/langgraph)
+* [RAG](https://python.langchain.com/docs/concepts/retrieval/)
+* [SQLite](https://www.sqlite.org/)
+* [Qwen](https://huggingface.co/Qwen)
+* [LangChain](https://www.langchain.com/)
+* LLM
+* Human-in-the-Loop
 
+## Screenshots
 
-##Screenshots
+### Screenshot 1
 
-<!-- Add your screenshots below -->
+![Screenshot 1](screenshots/screenshot1.png)
 
-Screenshot 1
+### Screenshot 2
 
-<img width="656" height="340" alt="Agent Routing - Query 2" src="https://github.com/user-attachments/assets/75fa116f-ef91-4ff6-9637-2803494bbeb8" />
+![Screenshot 2](screenshots/screenshot2.png)
 
-Screenshot 2
-<img width="1356" height="782" alt="Human-in-the-loop - Query 4" src="https://github.com/user-attachments/assets/162c9ab9-a321-4db6-97a0-167927192561" />
+### Screenshot 3
 
-Screenshot 3
-<img width="1361" height="308" alt="Memory Storage   Recall - Query 5" src="https://github.com/user-attachments/assets/bb80fdfe-412d-4dcd-b4a3-2e1c4d0b81ff" />
+![Screenshot 3](screenshots/screenshot3.png)
 
-Screenshot 4
-<img width="1374" height="411" alt="Query-3-Part 1" src="https://github.com/user-attachments/assets/acca271c-f435-46bc-b901-05ed414b2b4d" />
-<img width="1371" height="518" alt="Query-3-Part 2" src="https://github.com/user-attachments/assets/69006450-e721-48a6-a936-31a68691e314" />
+### Screenshot 4
 
-##Workflow
+![Screenshot 4](screenshots/screenshot4.png)
 
+## Workflow
 
-<img width="519" height="785" alt="image" src="https://github.com/user-attachments/assets/9c6a7b3c-56bd-4547-ac56-403bcb6e50ec" />
+The system follows a supervisor-based multi-agent workflow:
 
-##Steps
-1) Download qwen 2:5:3b
-2) Run main.py 
+```text
+                    Customer Request
+                           │
+                           ▼
+                    ┌──────────────┐
+                    │  Supervisor  │
+                    │     Agent    │
+                    └──────┬───────┘
+                           │
+          ┌────────────────┼────────────────┐
+          ▼                ▼                ▼
+    ┌───────────┐    ┌───────────┐    ┌────────────┐
+    │  Billing  │    │ Technical │    │ Escalation │
+    │   Agent   │    │  Support  │    │   Agent    │
+    └───────────┘    └───────────┘    └────────────┘
+          │                │                │
+          └────────────────┼────────────────┘
+                           ▼
+                    ┌──────────────┐
+                    │     RAG      │
+                    │  Knowledge   │
+                    │     Base     │
+                    └──────┬───────┘
+                           │
+                           ▼
+                    ┌──────────────┐
+                    │ Human Review │
+                    │  if required │
+                    └──────┬───────┘
+                           │
+                           ▼
+                       Response
+```
+
+## Steps
+
+1. Download [Qwen 2.5 3B](https://huggingface.co/Qwen/Qwen2.5-3B).
+
+2. Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Run the application:
+
+```bash
+python main.py
+```
+
+## Architecture
+
+The application uses a supervisor-based architecture where a central supervisor determines which specialized agent should handle each customer request.
+
+### Specialized Agents
+
+* **Billing Agent** — Handles billing and payment-related queries.
+* **Technical Support Agent** — Handles technical issues and troubleshooting.
+* **Escalation Agent** — Handles requests requiring human intervention.
+
+### RAG
+
+The retrieval-augmented generation pipeline retrieves relevant information from the local knowledge base before generating a response.
+
+This helps reduce hallucinations and keeps responses grounded in the available support documentation.
+
+### Conversation Memory
+
+SQLite is used to maintain persistent conversation state, allowing the system to retain relevant information across interactions.
+
+### Human-in-the-Loop
+
+Sensitive operations can be paused for human approval before the system proceeds.
+
+This provides an additional safety layer for actions that should not be performed autonomously.
+
+## Project Structure
+
+```text
+.
+├── main.py
+├── requirements.txt
+├── README.md
+├── database/
+├── knowledge_base/
+├── agents/
+├── rag/
+└── screenshots/
+```
+
+## Future Improvements
+
+* Add additional specialized support agents
+* Improve retrieval quality
+* Add evaluation and observability
+* Add authentication and authorization
+* Deploy the application as an API
+* Add a web-based customer support interface
+* Add automated agent evaluation
+
+## License
+
+This project is for educational and experimental purposes.
