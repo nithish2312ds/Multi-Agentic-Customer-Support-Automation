@@ -1,8 +1,8 @@
-Multi-Agent Customer Support Automation
+#Multi-Agent Customer Support Automation
 
 A production-inspired AI customer support system built with LangGraph, RAG, SQLite conversation memory, specialized agents, and human-in-the-loop approval workflows.
 
-Overview
+##Overview
 
 This project implements a supervisor-based multi-agent architecture for automating customer support workflows.
 
@@ -14,21 +14,12 @@ Uses SQLite for persistent conversation memory.
 
 Includes human-in-the-loop approval gates for sensitive actions.
 
-Tech Stack
+##Tech Stack
 
 Python · LangGraph · RAG · SQLite · LLM · Human-in-the-Loop
 
-Workflow
 
-The workflow starts with a customer query, which is analyzed by a supervisor agent and routed to the appropriate specialized agent.
-
-The selected agent retrieves relevant information through the RAG pipeline and accesses conversation history through SQLite.
-
-For sensitive actions, the workflow pauses for human approval before continuing.
-
-The final response is then returned to the customer.
-
-Screenshots
+##Screenshots
 
 <!-- Add your screenshots below -->
 
@@ -46,9 +37,11 @@ Screenshot 4
 <img width="1374" height="411" alt="Query-3-Part 1" src="https://github.com/user-attachments/assets/acca271c-f435-46bc-b901-05ed414b2b4d" />
 <img width="1371" height="518" alt="Query-3-Part 2" src="https://github.com/user-attachments/assets/69006450-e721-48a6-a936-31a68691e314" />
 
-Workflow
+##Workflow
+
+
 <img width="519" height="785" alt="image" src="https://github.com/user-attachments/assets/9c6a7b3c-56bd-4547-ac56-403bcb6e50ec" />
 
-Steps
+##Steps
 1) Download qwen 2:5:3b
 2) Run main.py 
