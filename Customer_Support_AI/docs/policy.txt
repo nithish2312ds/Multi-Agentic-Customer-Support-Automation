@@ -1,0 +1,1 @@
+Refund requests require supervisor approval. Account closure requires human review.
